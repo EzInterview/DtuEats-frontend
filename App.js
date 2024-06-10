@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { View, Text, ScrollView, TouchableOpacity, StyleSheet } from 'react-native';
+import { View, Text, ScrollView, TouchableOpacity } from 'react-native';
 
 const Home = () => {
   // Sample data for multiple shops and their menus with price and location
@@ -43,17 +43,21 @@ const Home = () => {
   };
 
   return (
-    <ScrollView contentContainerStyle={styles.container}>
+    <ScrollView className="flex-grow p-5">
       {shops.map((shop) => (
-        <View key={shop.id} style={styles.shopContainer}>
-          <Text style={styles.shopName}>{shop.name}</Text>
-          <Text style={styles.shopLocation}>{shop.location}</Text>
-          <View style={styles.menuContainer}>
+        <View key={shop.id} className="mb-5">
+          <Text className="text-lg font-bold mb-1 text-blue-700">{shop.name}</Text>
+          <Text className="mb-3">{shop.location}</Text>
+          <View className="flex flex-row flex-wrap">
             {shop.menu.map((menuItem, index) => (
-              <TouchableOpacity key={index} style={styles.menuItem} onPress={() => handleOrder(menuItem.item, shop.name)}>
-                <Text style={styles.itemName}>{menuItem.item}</Text>
-                <Text style={styles.itemPrice}>{menuItem.price}</Text>
-                <Text style={styles.orderButton}>Order</Text>
+              <TouchableOpacity 
+                key={index} 
+                className="bg-gray-200 p-2 rounded-lg mr-2 mb-2 flex flex-row items-center" 
+                onPress={() => handleOrder(menuItem.item, shop.name)}
+              >
+                <Text className="flex-1 font-bold">{menuItem.item}</Text>
+                <Text className="mr-2">{menuItem.price}</Text>
+                <Text className="text-blue-500">Order</Text>
               </TouchableOpacity>
             ))}
           </View>
@@ -62,46 +66,5 @@ const Home = () => {
     </ScrollView>
   );
 };
-
-const styles = StyleSheet.create({
-  container: {
-    flexGrow: 1,
-    padding: 20,
-  },
-  shopContainer: {
-    marginBottom: 20,
-  },
-  shopName: {
-    fontSize: 18,
-    fontWeight: 'bold',
-    marginBottom: 5,
-  },
-  shopLocation: {
-    marginBottom: 10,
-  },
-  menuContainer: {
-    flexDirection: 'row',
-    flexWrap: 'wrap',
-  },
-  menuItem: {
-    backgroundColor: '#f0f0f0',
-    padding: 10,
-    borderRadius: 5,
-    marginRight: 10,
-    marginBottom: 10,
-    flexDirection: 'row',
-    alignItems: 'center',
-  },
-  itemName: {
-    flex: 1,
-    fontWeight: 'bold',
-  },
-  itemPrice: {
-    marginRight: 10,
-  },
-  orderButton: {
-    color: 'blue',
-  },
-});
 
 export default Home;
