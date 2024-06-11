@@ -6,7 +6,7 @@ import {store, persistor} from './redux/store';
 
 const App = () => {
   return (
-   <Provider store={store}>
+<Provider store={store}>
       <PersistGate loading={null} persistor={persistor}>
         <Main />
       </PersistGate>

@@ -1,5 +1,6 @@
 import React from 'react';
 import { View, Text, FlatList } from 'react-native';
+import tw from 'twrnc';
 
 const OrderDescription = () => {
   const orderDetails = {
@@ -14,27 +15,27 @@ const OrderDescription = () => {
   };
 
   const renderItem = ({ item }) => (
-    <View className="p-4 mb-4 bg-gray-100 rounded">
-      <Text className="text-lg">{item.name}</Text>
-      <Text className="text-base">Quantity: {item.quantity}</Text>
-      <Text className="text-base">Price: ${item.price.toFixed(2)}</Text>
+    <View style={tw`p-4 mb-4 bg-gray-100 rounded`}>
+      <Text style={tw`text-lg`}>{item.name}</Text>
+      <Text style={tw`text-base`}>Quantity: {item.quantity}</Text>
+      <Text style={tw`text-base`}>Price: ${item.price.toFixed(2)}</Text>
     </View>
   );
 
   return (
-    <View className="p-4">
-      <Text className="text-2xl font-bold mb-4">Order Description</Text>
-      <Text className="text-lg mb-2">Order ID: {orderDetails.orderId}</Text>
-      <Text className="text-lg mb-4">Order Date: {orderDetails.orderDate}</Text>
+    <View style={tw`p-4`}>
+      <Text style={tw`text-2xl font-bold mb-4`}>Order Description</Text>
+      <Text style={tw`text-lg mb-2`}>Order ID: {orderDetails.orderId}</Text>
+      <Text style={tw`text-lg mb-4`}>Order Date: {orderDetails.orderDate}</Text>
 
       <FlatList
         data={orderDetails.items}
         renderItem={renderItem}
         keyExtractor={item => item.id}
-        className="mb-4"
+        style={tw`mb-4`}
       />
 
-      <Text className="text-xl font-bold">Total Price: ${orderDetails.totalPrice.toFixed(2)}</Text>
+      <Text style={tw`text-xl font-bold`}>Total Price: ${orderDetails.totalPrice.toFixed(2)}</Text>
     </View>
   );
 };
